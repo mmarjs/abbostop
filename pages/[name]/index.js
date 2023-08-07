@@ -1167,18 +1167,18 @@ const Letter = () => {
                                   "-" +
                                   new Date().getFullYear()}
                               </p>
-                              <p id="subject">
+                              <div id="subject">
                                 {companyName === "FBTO" ? (
-                                  <>{fbtoAddress}</>
+                                  <p>{fbtoAddress}</p>
                                 ) : companyName === "DPG Media" ? (
-                                  <>{dgpAddress}</>
+                                  <p>{dgpAddress}</p>
                                 ) : (
-                                  <>
+                                  <p>
                                     Betreft: Beëindiging overeenkomst{" "}
                                     {companyName}
-                                  </>
+                                  </p>
                                 )}
-                              </p>
+                              </div>
                             </div>
                             <div className="midtopSection">
                               <p id="greeting">Geachte heer, mevrouw,</p>
@@ -1345,18 +1345,18 @@ const Letter = () => {
                                   )}
                                 </span>
                               </div>
-                              <p id="letterName" className="topMargPara">
+                              <div id="letterName" className="topMargPara">
                                 {info?.voornaam ? (
-                                  <>{info.voornaam}</>
+                                  <p>{info.voornaam}</p>
                                 ) : (
-                                  <>[Voornaam]*</>
+                                  <p>[Voornaam]*</p>
                                 )}{" "}
                                 {info?.achternaam ? (
-                                  <>{info.achternaam}</>
+                                  <p>{info.achternaam}</p>
                                 ) : (
-                                  <>[Achternaam]*</>
+                                  <p>[Achternaam]*</p>
                                 )}
-                              </p>
+                              </div>
                             </div>
                           </div>
                         </div>

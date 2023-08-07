@@ -15,15 +15,13 @@ const CompanyLetter = () => {
   const [datumDate, setDatumDate] = useState(false);
   const [checked, setChecked] = useState(true);
   const router = useRouter();
-  const { route: companyRoute } = router.query;
+  const { name: companyRoute } = router.query;
   
-  console.log(companyRoute);
-
   const getCompanyByRoute = async () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `${API_URL}/company/route/${companyRoute}`,
+      url: `${API_URL}/company/route/${companyRoute?.split('-opzeggen')[0]}`,
       headers: {},
     };
     await axios
@@ -248,18 +246,20 @@ const CompanyLetter = () => {
       });
   };
   useEffect(() => {
-    document.title = companyUrlRoute?.Title
-    ? companyUrlRoute?.Title
-    : "Letter - Abbostop";
-    document.title = companyUrlRoute?.Title
-        ? companyUrlRoute?.Title
-        : "Letter - Abbostop";
-    document.getElementsByTagName("META")[2].content = companyUrlRoute?.Meta
-        ? companyUrlRoute?.Meta
-        : "Letter - Abbostop";
-    getCompanyByRoute();
-    getMailboxId();
-  }, []);
+    if(router.isReady){
+      document.title = companyUrlRoute?.Title
+      ? companyUrlRoute?.Title
+      : "Letter - Abbostop";
+      document.title = companyUrlRoute?.Title
+          ? companyUrlRoute?.Title
+          : "Letter - Abbostop";
+      document.getElementsByTagName("META")[2].content = companyUrlRoute?.Meta
+          ? companyUrlRoute?.Meta
+          : "Letter - Abbostop";
+      getCompanyByRoute();
+      getMailboxId();
+    }
+  }, [router.isReady]);
 
   const printRef = React.useRef();
 
